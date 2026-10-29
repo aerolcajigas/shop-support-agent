@@ -1,0 +1,15 @@
+{
+  "webhookPath": "shop-agent",
+  "replyUrl": "https://your-chat-channel.example.com/api/send-message",
+  "debounceSeconds": 3,
+  "model": "claude-haiku-5-5",
+  "maxTokens": 1024,
+  "maxSteps": 6,
+  "maxReplyChars": 1200,
+  "credentials": {
+    "postgres": { "id": "POSTGRES_CREDENTIAL_ID", "name": "Shop DB (shop_agent)" },
+    "anthropic": { "id": "ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic" },
+    "webhookAuth": { "id": "HEADER_AUTH_CREDENTIAL_ID", "name": "Incoming chat token" },
+    "replyAuth": { "id": "REPLY_AUTH_CREDENTIAL_ID", "name": "Chat channel token" }
+  }
+}

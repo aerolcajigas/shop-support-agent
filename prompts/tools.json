@@ -1,0 +1,59 @@
+[
+  {
+    "name": "identify_customer",
+    "description": "Link this conversation to a customer. Needs the email used at checkout and one of their order numbers. Returns ok + first name, or an error.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Email address the customer gave" },
+        "order_number": { "type": "string", "description": "One of their order numbers, e.g. 1042" }
+      },
+      "required": ["email", "order_number"]
+    }
+  },
+  {
+    "name": "list_orders",
+    "description": "The identified customer's 10 most recent orders: number, status, date, total.",
+    "input_schema": { "type": "object", "properties": {} }
+  },
+  {
+    "name": "order_details",
+    "description": "Status, dates, tracking, items and any open return for one of the identified customer's orders.",
+    "input_schema": {
+      "type": "object",
+      "properties": { "order_number": { "type": "string" } },
+      "required": ["order_number"]
+    }
+  },
+  {
+    "name": "check_return",
+    "description": "Whether an order can be returned now, days left in the return window, and which items can or can't be returned.",
+    "input_schema": {
+      "type": "object",
+      "properties": { "order_number": { "type": "string" } },
+      "required": ["order_number"]
+    }
+  },
+  {
+    "name": "start_return",
+    "description": "Open a return for an order the customer confirmed they want to return. Optionally only some items (SKUs from check_return).",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "order_number": { "type": "string" },
+        "reason": { "type": "string", "description": "The customer's reason, in a few words" },
+        "skus": { "type": "array", "items": { "type": "string" }, "description": "Only these items; leave out for all returnable items" }
+      },
+      "required": ["order_number", "reason"]
+    }
+  },
+  {
+    "name": "handoff",
+    "description": "Pass the conversation to a human team member. Use when you can't help with the tools, the customer is upset, or you're unsure.",
+    "input_schema": {
+      "type": "object",
+      "properties": { "reason": { "type": "string", "description": "Short note for the team" } },
+      "required": ["reason"]
+    }
+  }
+]

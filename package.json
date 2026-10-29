@@ -1,0 +1,15 @@
+{
+  "name": "shop-support-agent",
+  "version": "1.0.0",
+  "description": "AI support agent for an online store: n8n + Claude tool loop over Postgres functions. The model chooses, Postgres decides.",
+  "scripts": {
+    "build": "node build.mjs",
+    "deploy": "node build.mjs --deploy",
+    "test": "node build.mjs && node --test test/db.test.mjs test/turn.test.mjs"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.13"
+  },
+  "private": true
+}
